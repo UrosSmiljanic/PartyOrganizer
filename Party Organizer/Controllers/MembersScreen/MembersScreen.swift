@@ -57,9 +57,9 @@ class MembersScreen: UITableViewController {
             ProfileScreen.UserProfile.about = user[indexPath.item].aboutMe
             ProfileScreen.UserProfile.phoneNum = user[indexPath.item].cell
             ProfileScreen.UserProfile.photoUrl = user[indexPath.item].photo
+            ProfileScreen.UserProfile.id = user[indexPath.item].id
         }
        
-        
         present(vc, animated: true, completion: nil)
     }
 

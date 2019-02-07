@@ -7,10 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		26276F97220C3F58009DF80F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26276F96220C3F58009DF80F /* Assets.xcassets */; };
+		26276F9A220C40A3009DF80F /* InviteUsersScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26276F99220C40A3009DF80F /* InviteUsersScreen.swift */; };
+		26276F9C220C4906009DF80F /* HideKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26276F9B220C4906009DF80F /* HideKeyboard.swift */; };
 		26C87343220ADB84003BCA67 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C87342220ADB84003BCA67 /* AppDelegate.swift */; };
 		26C87345220ADB84003BCA67 /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C87344220ADB84003BCA67 /* HomeScreen.swift */; };
 		26C87348220ADB84003BCA67 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26C87346220ADB84003BCA67 /* Main.storyboard */; };
-		26C8734A220ADB86003BCA67 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26C87349220ADB86003BCA67 /* Assets.xcassets */; };
 		26C8734D220ADB86003BCA67 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26C8734B220ADB86003BCA67 /* LaunchScreen.storyboard */; };
 		26C8735A220AE669003BCA67 /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C87359220AE669003BCA67 /* CustomTabBarController.swift */; };
 		26C8735D220AEF0D003BCA67 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C8735C220AEF0D003BCA67 /* BaseTableViewCell.swift */; };
@@ -26,14 +28,19 @@
 		26C87373220B1D29003BCA67 /* ProfileScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C87372220B1D29003BCA67 /* ProfileScreen.swift */; };
 		26C87375220B3B2D003BCA67 /* UIColorExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C87374220B3B2D003BCA67 /* UIColorExt.swift */; };
 		26C87377220B3D88003BCA67 /* StringMakeCall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C87376220B3D88003BCA67 /* StringMakeCall.swift */; };
+		26C87379220B4848003BCA67 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 26C87378220B4848003BCA67 /* Default-568h@2x.png */; };
+		26C8737C220B48BC003BCA67 /* AddUserToPartyScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C8737B220B48BC003BCA67 /* AddUserToPartyScreen.swift */; };
+		26C87380220B56AB003BCA67 /* CreateNewPartyScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C8737F220B56AB003BCA67 /* CreateNewPartyScreen.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		26276F96220C3F58009DF80F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		26276F99220C40A3009DF80F /* InviteUsersScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteUsersScreen.swift; sourceTree = "<group>"; };
+		26276F9B220C4906009DF80F /* HideKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HideKeyboard.swift; sourceTree = "<group>"; };
 		26C8733F220ADB84003BCA67 /* Party Organizer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Party Organizer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		26C87342220ADB84003BCA67 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		26C87344220ADB84003BCA67 /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
 		26C87347220ADB84003BCA67 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		26C87349220ADB86003BCA67 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		26C8734C220ADB86003BCA67 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		26C8734E220ADB86003BCA67 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		26C87359220AE669003BCA67 /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
@@ -50,6 +57,9 @@
 		26C87372220B1D29003BCA67 /* ProfileScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileScreen.swift; sourceTree = "<group>"; };
 		26C87374220B3B2D003BCA67 /* UIColorExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExt.swift; sourceTree = "<group>"; };
 		26C87376220B3D88003BCA67 /* StringMakeCall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringMakeCall.swift; sourceTree = "<group>"; };
+		26C87378220B4848003BCA67 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		26C8737B220B48BC003BCA67 /* AddUserToPartyScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddUserToPartyScreen.swift; sourceTree = "<group>"; };
+		26C8737F220B56AB003BCA67 /* CreateNewPartyScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewPartyScreen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,9 +73,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		26276F98220C4016009DF80F /* CreateNewPartyScreens */ = {
+			isa = PBXGroup;
+			children = (
+				26C8737F220B56AB003BCA67 /* CreateNewPartyScreen.swift */,
+				26276F99220C40A3009DF80F /* InviteUsersScreen.swift */,
+			);
+			path = CreateNewPartyScreens;
+			sourceTree = "<group>";
+		};
 		26C87336220ADB84003BCA67 = {
 			isa = PBXGroup;
 			children = (
+				26C87378220B4848003BCA67 /* Default-568h@2x.png */,
 				26C87341220ADB84003BCA67 /* Party Organizer */,
 				26C87340220ADB84003BCA67 /* Products */,
 			);
@@ -82,17 +102,17 @@
 		26C87341220ADB84003BCA67 /* Party Organizer */ = {
 			isa = PBXGroup;
 			children = (
+				26C87355220AE02E003BCA67 /* Extensions */,
 				26C87360220AEF96003BCA67 /* DummyData */,
 				26C8735B220AEEEE003BCA67 /* BaseCells */,
 				26C87357220AE03F003BCA67 /* Models */,
 				26C87356220AE036003BCA67 /* Networking */,
-				26C87355220AE02E003BCA67 /* Extensions */,
 				26C87354220AE023003BCA67 /* Controllers */,
 				26C87342220ADB84003BCA67 /* AppDelegate.swift */,
 				26C87346220ADB84003BCA67 /* Main.storyboard */,
-				26C87349220ADB86003BCA67 /* Assets.xcassets */,
 				26C8734B220ADB86003BCA67 /* LaunchScreen.storyboard */,
 				26C8734E220ADB86003BCA67 /* Info.plist */,
+				26276F96220C3F58009DF80F /* Assets.xcassets */,
 			);
 			path = "Party Organizer";
 			sourceTree = "<group>";
@@ -100,10 +120,11 @@
 		26C87354220AE023003BCA67 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				26276F98220C4016009DF80F /* CreateNewPartyScreens */,
+				26C87358220AE08B003BCA67 /* HomeScreen */,
+				26C8737A220B4881003BCA67 /* UserScreens */,
 				26C87365220B0CB9003BCA67 /* MembersScreen */,
 				26C87359220AE669003BCA67 /* CustomTabBarController.swift */,
-				26C87358220AE08B003BCA67 /* HomeScreen */,
-				26C87372220B1D29003BCA67 /* ProfileScreen.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -116,6 +137,7 @@
 				26C87370220B1BFF003BCA67 /* LoadImageFromURL.swift */,
 				26C87374220B3B2D003BCA67 /* UIColorExt.swift */,
 				26C87376220B3D88003BCA67 /* StringMakeCall.swift */,
+				26276F9B220C4906009DF80F /* HideKeyboard.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -168,6 +190,15 @@
 				26C87368220B0E04003BCA67 /* MembersScreenCell.swift */,
 			);
 			path = MembersScreen;
+			sourceTree = "<group>";
+		};
+		26C8737A220B4881003BCA67 /* UserScreens */ = {
+			isa = PBXGroup;
+			children = (
+				26C87372220B1D29003BCA67 /* ProfileScreen.swift */,
+				26C8737B220B48BC003BCA67 /* AddUserToPartyScreen.swift */,
+			);
+			path = UserScreens;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -229,7 +260,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				26C8734D220ADB86003BCA67 /* LaunchScreen.storyboard in Resources */,
-				26C8734A220ADB86003BCA67 /* Assets.xcassets in Resources */,
+				26C87379220B4848003BCA67 /* Default-568h@2x.png in Resources */,
+				26276F97220C3F58009DF80F /* Assets.xcassets in Resources */,
 				26C87348220ADB84003BCA67 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -241,14 +273,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26276F9C220C4906009DF80F /* HideKeyboard.swift in Sources */,
+				26276F9A220C40A3009DF80F /* InviteUsersScreen.swift in Sources */,
 				26C87377220B3D88003BCA67 /* StringMakeCall.swift in Sources */,
 				26C8736F220B1772003BCA67 /* UserDataModel.swift in Sources */,
 				26C87373220B1D29003BCA67 /* ProfileScreen.swift in Sources */,
 				26C8735D220AEF0D003BCA67 /* BaseTableViewCell.swift in Sources */,
+				26C8737C220B48BC003BCA67 /* AddUserToPartyScreen.swift in Sources */,
 				26C87367220B0CE2003BCA67 /* MembersScreen.swift in Sources */,
 				26C87364220AFE50003BCA67 /* UIViewLayoutExt.swift in Sources */,
 				26C87345220ADB84003BCA67 /* HomeScreen.swift in Sources */,
 				26C8736D220B1752003BCA67 /* FetchGenericData.swift in Sources */,
+				26C87380220B56AB003BCA67 /* CreateNewPartyScreen.swift in Sources */,
 				26C87371220B1BFF003BCA67 /* LoadImageFromURL.swift in Sources */,
 				26C87343220ADB84003BCA67 /* AppDelegate.swift in Sources */,
 				26C8735A220AE669003BCA67 /* CustomTabBarController.swift in Sources */,

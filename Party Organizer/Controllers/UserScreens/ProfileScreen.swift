@@ -18,6 +18,7 @@ class ProfileScreen: UIViewController{
         static var about = String()
         static var photoUrl = String()
         static var phoneNum = String()
+        static var id = Int()
     }
     
     
@@ -88,7 +89,9 @@ class ProfileScreen: UIViewController{
     }()
     
     @objc func handleAddToParty() {
-        print("Come to the party")
+         let vc = UINavigationController(rootViewController: AddUserToPartyScreen())
+        AddUserToPartyScreen.navTitle = UserProfile.name
+        present(vc, animated: true, completion: nil)
     }
     
     override func viewDidLoad() {
