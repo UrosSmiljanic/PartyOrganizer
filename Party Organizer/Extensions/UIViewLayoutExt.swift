@@ -6,6 +6,8 @@
 //  Copyright © 2019 Uros Smiljanic. All rights reserved.
 //
 
+// Auto layout extension that reduces duplicated lines of code
+
 import UIKit
 
 extension UIView {

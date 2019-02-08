@@ -6,6 +6,8 @@
 //  Copyright © 2019 Uros Smiljanic. All rights reserved.
 //
 
+// Fetching data function that accepts urlString and uses a data model that defined according to received JSON
+
 import Foundation
 
 func fetchGenericData<T: Decodable>(urlString: String, completion: @escaping (T) -> ()) {

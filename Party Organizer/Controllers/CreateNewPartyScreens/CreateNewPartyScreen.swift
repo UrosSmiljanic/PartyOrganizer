@@ -6,6 +6,8 @@
 //  Copyright © 2019 Uros Smiljanic. All rights reserved.
 //
 
+// The view controller that handle edit/creating a new party
+
 import UIKit
 
 class CreateNewPartyScreen: UIViewController {
@@ -108,14 +110,14 @@ class CreateNewPartyScreen: UIViewController {
         return textView
     }()
     
+    let rightArrowView: UIImageView = {
+        let view = UIImageView()
+        view.image = #imageLiteral(resourceName: "rightArrow")
+        return view
+    }()
+    
     let datePicker = UIDatePicker()
     var tableView = UITableView()
-    
-    static var partyId: Int?
-    
-    static var partyName = ""
-    static var partyDate = ""
-    static var partyDescription = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -126,24 +128,29 @@ class CreateNewPartyScreen: UIViewController {
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target: self, action: #selector(goBack))
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(handleSavingNewParty))
         
+        // The function that set up the initial view. Order the elements around the screen and defines their constraints
         setupViews()
+        
+        // The function that enables date picker for the date input field
         showDatePicker()
         
+        // The functions that hide keyboard on tap or when the user finishes inputting
         hideKeyboardWhenTappedAround()
         hideKeyboard()
         
-        nameTextField.text = CreateNewPartyScreen.partyName
-        txtDatePicker.text = CreateNewPartyScreen.partyDate
-        descriptionDetailsTextView.text = CreateNewPartyScreen.partyDescription
+        nameTextField.text = CommonData.partyName
+        txtDatePicker.text = CommonData.partyDate
+        descriptionDetailsTextView.text = CommonData.partyDescription
     }
     
+    // The function that saves the new party with error check if the user forgot to add text to mandatory fields
     @objc func handleSavingNewParty() {
         
-        if let id = CreateNewPartyScreen.partyId {
+        if let id = CommonData.partyId {
             
             if let title = nameTextField.text, let date = txtDatePicker.text, let description = descriptionDetailsTextView.text {
                 if title != "" && date != "" && description != "" {
-                    HomeScreen.listOfParties[id] = Party(title: title, date: date, partyDescription: description, members: InviteUsersScreen.invitedMembers)
+                    CommonData.listOfParties[id] = Party(title: title, date: date, partyDescription: description, members: CommonData.invitedMembers)
                     let vc = CustomTabBarController()
                     present(vc, animated: true, completion: nil)
                 } else {
@@ -159,7 +166,7 @@ class CreateNewPartyScreen: UIViewController {
             
             if let title = nameTextField.text, let date = txtDatePicker.text, let description = descriptionDetailsTextView.text {
                 if title != "" && date != "" && description != "" {
-                    HomeScreen.listOfParties.append(Party(title: title, date: date, partyDescription: description, members: []))
+                    CommonData.listOfParties.append(Party(title: title, date: date, partyDescription: description, members: []))
                     let vc = CustomTabBarController()
                     present(vc, animated: true, completion: nil)
                 } else {
@@ -174,12 +181,18 @@ class CreateNewPartyScreen: UIViewController {
         
     }
     
+    // The function that takes the user back without saving any data
     @objc func goBack() {
         
-        CreateNewPartyScreen.partyId = nil
-        CreateNewPartyScreen.partyName = ""
-        CreateNewPartyScreen.partyDate = ""
-        CreateNewPartyScreen.partyDescription = ""
+        CommonData.partyId = nil
+        CommonData.partyName = ""
+        CommonData.partyDate = ""
+        CommonData.partyDescription = ""
+        
+        if CommonData.addBtnCheck {
+            CommonData.addBtnCheck = false
+            CommonData.listOfParties.removeLast()
+        }
         
         dismiss(animated: true, completion: nil)
     }
@@ -265,10 +278,14 @@ class CreateNewPartyScreen: UIViewController {
         
         let vc = UINavigationController(rootViewController: InviteUsersScreen())
         
-        if let id = CreateNewPartyScreen.partyId {
-            for index in 0..<HomeScreen.listOfParties[id].invitedMembers.count {
-                InviteUsersScreen.invitedMembers.append(HomeScreen.listOfParties[id].invitedMembers[index])
+        CommonData.invitedMembers.removeAll()
+        
+        if let id = CommonData.partyId {
+            
+            for index in 0..<CommonData.listOfParties[id].invitedMembers.count {
+                CommonData.invitedMembers.append(CommonData.listOfParties[id].invitedMembers[index])
             }
+            
         }
         
         present(vc, animated: true, completion: nil)
@@ -284,7 +301,14 @@ extension CreateNewPartyScreen: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let button = UIButton(type: .custom)
-        button.setTitle("   Members (\(HomeScreen.listOfParties[CreateNewPartyScreen.partyId!].invitedMembers.count))", for: .normal)
+        
+        if let id = CommonData.partyId {
+            button.setTitle("   Members (\(CommonData.listOfParties[id].invitedMembers.count))", for: .normal)
+        } else {
+            
+            button.setTitle("   Members (0)", for: .normal)
+        }
+        
         button.contentHorizontalAlignment = .left
         button.backgroundColor = .white
         button.setTitleColor(.black, for: .normal)
@@ -292,13 +316,18 @@ extension CreateNewPartyScreen: UITableViewDelegate, UITableViewDataSource {
         
         button.addTarget(self, action: #selector(inviteMembers), for: .touchUpInside)
         
+        button.addSubview(rightArrowView)
+        rightArrowView.anchor(top: button.topAnchor, leading: nil, bottom: button.bottomAnchor, trailling: button.trailingAnchor, padding: .init(top: 5, left: 0, bottom: 5, right: 12), size: .init(width: 30, height: 0))
+        
         return button
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if CreateNewPartyScreen.partyId != nil {
-            return HomeScreen.listOfParties[CreateNewPartyScreen.partyId!].invitedMembers.count 
+        
+        if let id = CommonData.partyId {
+            return CommonData.listOfParties[id].invitedMembers.count
         }
+        
         return 0
         
     }
@@ -306,19 +335,19 @@ extension CreateNewPartyScreen: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
         
-        cell.textLabel?.text = HomeScreen.listOfParties[CreateNewPartyScreen.partyId!].invitedMembers[indexPath.item].userName
+        cell.textLabel?.text = CommonData.listOfParties[CommonData.partyId!].invitedMembers[indexPath.item].userName
         
         return cell
     }
     
-     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             
-            if let id = CreateNewPartyScreen.partyId {
-                HomeScreen.listOfParties[id].invitedMembers.remove(at: indexPath.item)
+            if let id = CommonData.partyId {
+                CommonData.listOfParties[id].invitedMembers.remove(at: indexPath.item)
             }
             tableView.deleteRows(at: [indexPath], with: .fade)
-        
+            
         }
     }
     

@@ -6,6 +6,8 @@
 //  Copyright © 2019 Uros Smiljanic. All rights reserved.
 //
 
+// The tab bar controller initialization for home end members controllers
+
 import UIKit
 
 class CustomTabBarController: UITabBarController {

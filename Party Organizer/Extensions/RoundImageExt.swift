@@ -6,6 +6,8 @@
 //  Copyright © 2019 Uros Smiljanic. All rights reserved.
 //
 
+// An extension that cut the corners of the image and make it circle
+
 import UIKit
 
 extension UIImageView {

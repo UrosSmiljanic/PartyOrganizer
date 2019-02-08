@@ -6,6 +6,8 @@
 //  Copyright © 2019 Uros Smiljanic. All rights reserved.
 //
 
+// An extension for hiding keyboard after finish text input or by a tap on the screen outside the keyboard
+
 import UIKit
 
 extension UIViewController {

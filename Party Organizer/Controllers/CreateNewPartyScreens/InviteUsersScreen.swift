@@ -6,6 +6,8 @@
 //  Copyright © 2019 Uros Smiljanic. All rights reserved.
 //
 
+// The view controller that show a list of the members that are taken via an API call and check them if they are already invited to the party
+
 import UIKit
 
 class InviteUsersScreen: UITableViewController {
@@ -15,8 +17,6 @@ class InviteUsersScreen: UITableViewController {
     let apiCall = "http://api-coin.quantox.tech/profiles.json"
     
     var user: Users?
-    
-    static var invitedMembers = [Party.Members]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,20 +37,21 @@ class InviteUsersScreen: UITableViewController {
         
     }
     
+    // The function that handles the saving of invited users
+    
     @objc func handleSavingCheckedUsers() {
         
-        
-        
-        if let id = CreateNewPartyScreen.partyId {
-            for index in 0..<InviteUsersScreen.invitedMembers.count {
-                
-                HomeScreen.listOfParties[id].invitedMembers.append(InviteUsersScreen.invitedMembers[index])
-                
+        if let id = CommonData.partyId {
+            
+            CommonData.listOfParties[id].invitedMembers.removeAll()
+            
+            for index in 0..<CommonData.invitedMembers.count {
+                CommonData.listOfParties[id].invitedMembers.append(CommonData.invitedMembers[index])
             }
             
         }
         
-        InviteUsersScreen.invitedMembers.removeAll()
+        CommonData.invitedMembers.removeAll()
         dismiss(animated: true, completion: nil)
         
     }
@@ -72,13 +73,15 @@ class InviteUsersScreen: UITableViewController {
         cell.nameLabel.text = user?.profiles[indexPath.item].username
         cell.thumbailImageView.load(url: URL(string: (user?.profiles[indexPath.item].photo)!)!)
         
-        if let id = CreateNewPartyScreen.partyId {
-            for index in 0..<HomeScreen.listOfParties[id].invitedMembers.count {
+        if let id = CommonData.partyId {
+            
+            for index in 0..<CommonData.listOfParties[id].invitedMembers.count {
                 
-                if user?.profiles[indexPath.item].id == InviteUsersScreen.invitedMembers[index].id {
+                if user?.profiles[indexPath.item].id == CommonData.invitedMembers[index].id {
                     
                     cell.accessoryType = UITableViewCell.AccessoryType.checkmark
                 }
+                
             }
         }
         return cell
@@ -89,16 +92,17 @@ class InviteUsersScreen: UITableViewController {
         if tableView.cellForRow(at: indexPath)?.accessoryType == UITableViewCell.AccessoryType.checkmark {
             tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCell.AccessoryType.none
             
-            for index in 0..<InviteUsersScreen.invitedMembers.count {
-                if user?.profiles[indexPath.item].id == InviteUsersScreen.invitedMembers[index].id {
-                    InviteUsersScreen.invitedMembers.remove(at: index)
+            for index in 0..<CommonData.invitedMembers.count {
+                if user?.profiles[indexPath.item].id == CommonData.invitedMembers[index].id {
+                    CommonData.invitedMembers.remove(at: index)
+                    return
                 }
             }
             
         } else {
             
             tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCell.AccessoryType.checkmark
-            InviteUsersScreen.invitedMembers.append(Party.Members.init(dictionary: ["id" : user?.profiles[indexPath.item].id ?? "", "userName" : user?.profiles[indexPath.item].username ?? ""]))
+            CommonData.invitedMembers.append(Party.Members.init(dictionary: ["id" : user?.profiles[indexPath.item].id ?? "", "userName" : user?.profiles[indexPath.item].username ?? ""]))
             
         }
         

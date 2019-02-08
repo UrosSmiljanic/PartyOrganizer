@@ -6,6 +6,8 @@
 //  Copyright © 2019 Uros Smiljanic. All rights reserved.
 //
 
+// Table view cell that defines how it will look 
+
 import UIKit
 
 class MembersScreenCell: BaseTableViewCell {
@@ -25,7 +27,7 @@ class MembersScreenCell: BaseTableViewCell {
         label.text = " TEST "
         return label
     }()
-
+    
     override func setupViews() {
         super.setupViews()
         
@@ -36,5 +38,5 @@ class MembersScreenCell: BaseTableViewCell {
         nameLabel.anchor(top: self.topAnchor, leading: thumbailImageView.trailingAnchor, bottom: self.bottomAnchor, trailling: self.trailingAnchor, padding: .init(top: 0, left: 5, bottom: 0, right: 0))
         
     }
-
+    
 }

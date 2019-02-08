@@ -6,6 +6,8 @@
 //  Copyright © 2019 Uros Smiljanic. All rights reserved.
 //
 
+// Class for making party data
+
 import UIKit
 
 class Party: NSObject {

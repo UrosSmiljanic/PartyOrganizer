@@ -6,6 +6,8 @@
 //  Copyright © 2019 Uros Smiljanic. All rights reserved.
 //
 
+// The initial view controller that present list of parties that are created
+
 import UIKit
 
 class HomeScreen: UITableViewController {
@@ -17,15 +19,6 @@ class HomeScreen: UITableViewController {
     }()
     
     private let cellId = "cellId"
-    
-    static var listOfParties: [Party] = {
-        let first = Party(title: "New Years", date: "31.12.2018", partyDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", members: [])
-        let second = Party(title: "Party 1", date: "01.01.2019", partyDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", members: [])
-        let third = Party(title: "Party 2", date: "21.02.2019", partyDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", members: [])
-        let fourth = Party(title: "Party 3", date: "22.03.2019", partyDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", members: [])
-        
-        return [first, second, third, fourth]
-    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,33 +36,41 @@ class HomeScreen: UITableViewController {
         containerView.removeFromSuperview()
     }
     
+    // The function that handles switching to the view controller for adding the new party
     @objc func handleAddingNewParty() {
+        
+        CommonData.partyId = CommonData.listOfParties.count
+        
+        CommonData.listOfParties.append(Party(title: "", date: "", partyDescription: "", members: []))
+        
+        CommonData.addBtnCheck = true
+        
         let vc = UINavigationController(rootViewController: CreateNewPartyScreen())
         present(vc, animated: true, completion: nil)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return HomeScreen.listOfParties.count//HomeScreen.sampleData.parties.count ?? 0
+        return CommonData.listOfParties.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! HomeScreenCell
         
-        let data = HomeScreen.listOfParties
-            
-            cell.titleLabel.text = data[indexPath.item].title
-            cell.dateLabel.text = data[indexPath.item].date
-            cell.descriptionLabel.text = data[indexPath.item].partyDescription
-            return cell
-
+        let data = CommonData.listOfParties
+        
+        cell.titleLabel.text = data[indexPath.item].title
+        cell.dateLabel.text = data[indexPath.item].date
+        cell.descriptionLabel.text = data[indexPath.item].partyDescription
+        return cell
+        
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            HomeScreen.listOfParties.remove(at: indexPath.item)
+            CommonData.listOfParties.remove(at: indexPath.item)
             tableView.deleteRows(at: [indexPath], with: .fade)
             
-            if HomeScreen.listOfParties.count == 0 {
+            if CommonData.listOfParties.count == 0 {
                 handleEmptyHomeScreen()
             }
         }
@@ -79,19 +80,19 @@ class HomeScreen: UITableViewController {
         
         let vc = UINavigationController(rootViewController: CreateNewPartyScreen())
         
-        CreateNewPartyScreen.partyId = indexPath.item
-        CreateNewPartyScreen.partyName = HomeScreen.listOfParties[indexPath.item].title ?? ""
-        CreateNewPartyScreen.partyDate = HomeScreen.listOfParties[indexPath.item].date ?? ""
-        CreateNewPartyScreen.partyDescription = HomeScreen.listOfParties[indexPath.item].partyDescription ?? ""
+        CommonData.partyId = indexPath.item
+        CommonData.partyName = CommonData.listOfParties[indexPath.item].title ?? ""
+        CommonData.partyDate = CommonData.listOfParties[indexPath.item].date ?? ""
+        CommonData.partyDescription = CommonData.listOfParties[indexPath.item].partyDescription ?? ""
         
-        for index in 0..<HomeScreen.listOfParties[indexPath.item].invitedMembers.count {
-            InviteUsersScreen.invitedMembers.append(HomeScreen.listOfParties[indexPath.item].invitedMembers[index])
+        for index in 0..<CommonData.listOfParties[indexPath.item].invitedMembers.count {
+            CommonData.invitedMembers.append(CommonData.listOfParties[indexPath.item].invitedMembers[index])
         }
-        
         
         present(vc, animated: true, completion: nil)
     }
     
+    // The function that handles showing an empty screen if there are no parties
     func handleEmptyHomeScreen() {
         
         

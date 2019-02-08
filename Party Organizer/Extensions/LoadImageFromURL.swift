@@ -6,6 +6,8 @@
 //  Copyright © 2019 Uros Smiljanic. All rights reserved.
 //
 
+// An extension that asynchronous download images from URL
+
 import UIKit
 
 extension UIImageView {

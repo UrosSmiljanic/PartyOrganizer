@@ -6,6 +6,8 @@
 //  Copyright © 2019 Uros Smiljanic. All rights reserved.
 //
 
+// Base table view cell. Every other table view cell enherite this cell initiation
+
 import UIKit
 
 class BaseTableViewCell: UITableViewCell {

@@ -6,6 +6,8 @@
 //  Copyright © 2019 Uros Smiljanic. All rights reserved.
 //
 
+// An extension that initial phone call using the string as phone number
+
 import UIKit
 
 extension String {
